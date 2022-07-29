@@ -1,0 +1,11 @@
+{
+    "name": "eeggfoundation/eegg.foundation",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "eegg devs"
+        }
+    ],
+    "require": {}
+}
