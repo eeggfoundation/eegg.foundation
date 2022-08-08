@@ -19,6 +19,10 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import './app.css'
 import App from './App'
 import Welcome from './routes/Welcome'
+import Token from './routes/Token'
+import Project from './routes/Project'
+import Products from './routes/Products'
+import Operator from './routes/Operator'
 
 let providers = [
     publicProvider(),
@@ -54,9 +58,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <Routes>
                     <Route path="/" element={<App />}>
                         <Route index element={<Welcome />} />
+                        <Route path="/token" element={<Token />} />
+                        <Route path="/project" element={<Project />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route path="/operator" element={<Operator />} />
                     </Route>
                 </Routes>
             </HashRouter>
         </WagmiConfig>
-    </React.StrictMode>,
+    </React.StrictMode>
 )

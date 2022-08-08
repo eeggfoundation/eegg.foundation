@@ -5,12 +5,13 @@ import {
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { classNames } from './utils'
 import Mark from './components/Mark'
 
 const navigation = [
     { name: 'Token', href: '/token' },
     { name: 'Project', href: '/project' },
-    { name: 'Marketplace', href: '/marketplace' },
+    { name: 'Products', href: '/products' },
     { name: 'Operator', href: '/operator' },
   ]
 
@@ -38,7 +39,14 @@ const App = () => {
                                     <NavLink
                                         key={item.name}
                                         to={item.href}
-                                        className="font-medium text-gray-500 hover:text-gray-900"
+                                        className={({isActive}) => {
+                                            return classNames(
+                                                isActive
+                                                    ? 'text-gray-900'
+                                                    : 'text-gray-400 hover:text-gray-900 transition-colors ease-in-out duration-300',
+                                                'font-bold',
+                                            )
+                                        }}
                                     >
                                         {item.name}
                                     </NavLink>
