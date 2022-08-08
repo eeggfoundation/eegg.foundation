@@ -55,7 +55,7 @@ const App = () => {
                             <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                                 <span className="inline-flex rounded-md shadow">
                                     <span
-                                        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                                        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-bold rounded-md text-indigo-600 bg-white hover:bg-gray-50"
                                     >
                                         Connect
                                     </span>
@@ -96,14 +96,14 @@ const App = () => {
                                         <NavLink
                                             key={item.name}
                                             to={item.href}
-                                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                                            className="block px-3 py-2 rounded-md text-base font-bold text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                                         >
                                             {item.name}
                                         </NavLink>
                                     ))}
                                 </div>
                                 <span
-                                    className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                                    className="block w-full px-5 py-3 text-center font-bold text-indigo-600 bg-gray-50 hover:bg-gray-100"
                                 >
                                     Connect
                                 </span>
