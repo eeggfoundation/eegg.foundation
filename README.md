@@ -20,21 +20,33 @@ If you want to use [Alchemy](https://www.alchemy.com/) as your web3 provider, as
 VITE_ALCHEMY_API_KEY=<your API key>
 ```
 
-## Available Scripts
+## Frontend
+
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm run dev`
+#### `npm run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 The page will reload when you make changes.
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `dist` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
 The app is ready to be deployed!
+
+## Backend
+
+Backend serverless functions are written in `go`, prepared for deployment to [Vercel](https://vercel.com). The official Vercel runtime doc is [here](https://vercel.com/docs/runtimes#official-runtimes/go).
+
+### Testing
+
+```sh
+go test ./api/...
+```
