@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Hook handles web-hooks from OpenZeppelin Defender.
 func Hook(w http.ResponseWriter, r *http.Request) {
 	var (
 		b   []byte
