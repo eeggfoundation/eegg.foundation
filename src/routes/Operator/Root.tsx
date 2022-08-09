@@ -5,23 +5,11 @@ const Operator = () => {
     return (
         <div>
             <Wallet.Consumer>
-                {({ isConnected, toggle }) => (
+                {({ isConnected }) => (
                     <div>
                         <div>
                             {isConnected ? 'Connected' : 'Disconnected'}
                         </div>
-                        <div>
-                            <button onClick={toggle} className="app-btn">
-                                Toggle
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </Wallet.Consumer>
-            <Wallet.Consumer>
-                {({ isConnected: isWalletConnected }) => (
-                    <div>
-                        {isWalletConnected ? 'true' : 'false'}
                     </div>
                 )}
             </Wallet.Consumer>

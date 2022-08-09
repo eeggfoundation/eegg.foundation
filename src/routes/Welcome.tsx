@@ -8,7 +8,7 @@ const Welcome = () => {
                     The world of Art redefined through decentralization.
                 </h1>
                 <h2 className="mt-4 text-2xl lg:text-3xl lg:leading-normal lg:w-2/3">
-                    <span className="font-bold">Eegg Foundation</span> is a non-profit organization that facilitates the creation
+                    <span className="font-bold">Eegg Foundation</span> facilitates the creation
                     of a&nbsp;revolutionary new asset class on the Ethereum blockchain. Our mission is to bridge the worlds of art
                     and technology by creating a new form of distributed ownership for galleries and artists.
                 </h2>
