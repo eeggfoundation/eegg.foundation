@@ -56,12 +56,12 @@ const App = () => {
                                             </NavLink>
                                         ))}
                                     </div>
-                                    <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-                                        <span className="inline-flex rounded-md shadow">
-                                            <span
-                                                className="inline-flex items-center px-4 py-2 border border-transparent text-base font-bold rounded-md text-indigo-600 bg-white hover:bg-gray-50"
-                                            >
-                                                {isConnected && (
+                                    {isConnected && (
+                                        <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+                                            <span className="inline-flex rounded-md shadow">
+                                                <span
+                                                    className="inline-flex items-center px-4 py-2 border border-transparent text-base font-bold rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                                                >
                                                     <div className="inline-flex items-center space-x-1 text-sm">
                                                         {accountChain && (
                                                             <span className="">{accountChain}</span>
@@ -70,10 +70,10 @@ const App = () => {
                                                             <span className="truncate w-36">{accountAddr}</span>
                                                         )}
                                                     </div>
-                                                )}
+                                                </span>
                                             </span>
-                                        </span>
-                                    </div>
+                                        </div>
+                                    )}
                                 </nav>
                             </div>
 
