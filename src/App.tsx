@@ -6,22 +6,23 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { classNames } from './utils'
+import Footer from './components/Footer'
 import Mark from './components/Mark'
 
 const navigation = [
     { name: 'Token', href: '/token' },
     { name: 'Project', href: '/project' },
     { name: 'Products', href: '/products' },
-    { name: 'Operator', href: '/operator' },
+    { name: '<Operator />', href: '/operator' },
   ]
 
 const App = () => {
     return (
-        <div className="relative bg-gray-50 overflow-hidden min-h-screen">
-            <div className="relative pt-6 pb-16 sm:pb-24">
+        <>
+            <div className="flex flex-col bg-gray-50 overflow-hidden min-h-[95vh]">
                 <Popover>
-                    <div className="w-full px-4 sm:px-6">
-                        <nav className="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
+                    <div className="w-full pt-6 px-4 sm:px-6">
+                        <nav className="relative flex items-center justify-between sm:h-10 md:justify-center">
                             <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
                                 <div className="flex items-center justify-between w-full md:w-auto">
                                     <NavLink to="/">
@@ -112,11 +113,12 @@ const App = () => {
                     </Transition>
                 </Popover>
 
-                <main className="mt-16 px-4 sm:mt-24">
+                <main className="flex grow px-4">
                     <Outlet />
                 </main>
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }
 
