@@ -16,13 +16,16 @@ import { publicProvider } from 'wagmi/providers/public'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
+import { ToastContainer, Slide } from 'react-toastify'
+
+import 'react-toastify/dist/ReactToastify.css'
 import './app.css'
 
 import Wallet from './providers/Wallet'
 
 import App from './App'
 import Welcome from './routes/Welcome'
-import Token from './routes/Token'
+import Token from './routes/Token/Root'
 import Project from './routes/Project'
 import Products from './routes/Products'
 import Operator from './routes/Operator/Root'
@@ -69,6 +72,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         </Route>
                     </Routes>
                 </HashRouter>
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={true}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable={false}
+                    pauseOnHover
+                    transition={Slide}
+                />
             </Wallet.Provider>
         </WagmiConfig>
     </React.StrictMode>

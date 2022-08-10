@@ -6,13 +6,16 @@ import {
     useAccount,
     useNetwork,
 } from 'wagmi'
+import { Token } from './../blockchain'
 
 interface API {
     isConnected: boolean,
     isConnecting: boolean,
 
-    addr: string | null,
-    chain: string | null,
+    tokenAddr: string | undefined,
+
+    walletAddr: string | undefined,
+    chain: string | undefined,
 
     //toggle: () => void,
 }
@@ -21,8 +24,10 @@ const defaultCtx = {
     isConnected: false,
     isConnecting: false,
 
-    addr: null,
-    chain: null,
+    tokenAddr: undefined,
+
+    walletAddr: undefined,
+    chain: undefined,
 }
 
 
@@ -48,7 +53,7 @@ const Provider = (props: React.PropsWithChildren) => {
     const network = useNetwork()
 
     useEffect(() => {
-        setCtx(ctx => ({ ...ctx, addr: account.address ?? null }))
+        setCtx(ctx => ({ ...ctx, walletAddr: account.address ?? undefined }))
     }, [account.address])
 
     useEffect(() => {
@@ -60,7 +65,16 @@ const Provider = (props: React.PropsWithChildren) => {
     }, [account.isConnecting, account.isReconnecting])
 
     useEffect(() => {
-        setCtx(ctx => ({ ...ctx, chain: network.chain && !network.chain.unsupported ? network.chain.name : null }))
+        console.log('network.chain', network.chain)
+        setCtx(ctx => ({
+            ...ctx,
+            tokenAddr: network.chain && Token.addr.hasOwnProperty(network.chain.network)
+                ? Token.addr[network.chain.network]
+                : undefined,
+            chain: network.chain && !network.chain.unsupported
+                ? network.chain.name
+                : undefined,
+        }))
     }, [network.chain])
 
     return (
@@ -78,8 +92,17 @@ const Consumer = (props: {children: (api:API) => React.ReactNode}) => {
     )
 }
 
+const WithSupportedNetworks = (props: React.PropsWithChildren) => {
+    return (
+        <>
+            {props.children}
+        </>
+    )
+}
+
 export default {
     Context,
     Consumer,
     Provider,
+    WithSupportedNetworks,
 }

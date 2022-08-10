@@ -15,7 +15,7 @@ const Card = (props: React.PropsWithChildren<{className?: string, label?: string
     return (
         <div className="w-full">
             {props.label && (
-                <h3 className="text-2xl px-2 lg:px-4 my-2">
+                <h3 className="px-2 lg:px-4 my-2">
                     {props.label}
                 </h3>
             )}

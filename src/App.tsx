@@ -20,7 +20,7 @@ const navigation = [
 const App = () => {
     return (
         <Wallet.Consumer>
-            {({ isConnected, chain: accountChain, addr: accountAddr }) => (
+            {({ isConnected, chain: walletChain, walletAddr }) => (
                 <>
                     <div className="flex flex-col bg-gray-50 overflow-hidden min-h-[95vh]">
                         <Popover>
@@ -63,11 +63,11 @@ const App = () => {
                                                     className="inline-flex items-center px-4 py-2 border border-transparent text-base font-bold rounded-md text-indigo-600 bg-white hover:bg-gray-50"
                                                 >
                                                     <div className="inline-flex items-center space-x-1 text-sm">
-                                                        {accountChain && (
-                                                            <span className="">{accountChain}</span>
+                                                        {walletChain && (
+                                                            <span className="">{walletChain}</span>
                                                         )}
-                                                        {accountAddr && (
-                                                            <span className="truncate w-36">{accountAddr}</span>
+                                                        {walletAddr && (
+                                                            <span className="truncate w-36">{walletAddr}</span>
                                                         )}
                                                     </div>
                                                 </span>
