@@ -1,19 +1,31 @@
 import React from 'react'
 import Wallet from '../../providers/Wallet'
+import { Layout } from '../../components/Layout'
+
+import Info from './Info'
 
 const Operator = () => {
     return (
-        <div>
+        <Layout.CardsContainer>
             <Wallet.Consumer>
                 {({ isConnected }) => (
-                    <div>
-                        <div>
-                            {isConnected ? 'Connected' : 'Disconnected'}
-                        </div>
-                    </div>
+                    <>
+                        {isConnected ? (
+                            <Layout.Card label="Token Info">
+                                <Info />
+                            </Layout.Card>
+                        ) : (
+                            <Layout.Card>
+
+                                <p>
+                                    Not connected
+                                </p>
+                            </Layout.Card>
+                        )}
+                    </>
                 )}
             </Wallet.Consumer>
-        </div>
+        </Layout.CardsContainer>
     )
 }
 

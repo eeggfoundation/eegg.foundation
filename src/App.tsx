@@ -125,7 +125,7 @@ const App = () => {
                             </Transition>
                         </Popover>
 
-                        <main className="flex grow px-4">
+                        <main className="px-4">
                             <Outlet />
                         </main>
                     </div>

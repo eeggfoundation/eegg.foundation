@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const Welcome = () => {
     return (
-        <div className="flex flex-wrap w-full h-100 py-16">
+        <div className="flex flex-wrap w-full min-h-[85vh] py-16">
             <div className="w-full md:w-2/3 md:pr-4">
                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold">
                     The world of Art redefined through decentralization.
