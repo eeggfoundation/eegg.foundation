@@ -1,4 +1,5 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 import { useContractWrite } from 'wagmi'
 import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
@@ -12,6 +13,9 @@ const GrantRole = (props: React.PropsWithChildren<{tokenAddr: string}>) => {
         addressOrName: props.tokenAddr,
         contractInterface: Token.abi,
         functionName: 'grantRole',
+        onSuccess: () => {
+            toast.success('Granted')
+        },
     })
 
     const { handleSubmit, register } = useForm()

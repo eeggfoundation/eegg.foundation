@@ -65,7 +65,6 @@ const Provider = (props: React.PropsWithChildren) => {
     }, [account.isConnecting, account.isReconnecting])
 
     useEffect(() => {
-        console.log('network.chain', network.chain)
         setCtx(ctx => ({
             ...ctx,
             tokenAddr: network.chain && Token.addr.hasOwnProperty(network.chain.network)

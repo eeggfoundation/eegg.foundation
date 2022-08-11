@@ -17,7 +17,9 @@ const Root = () => {
                                 {tokenAddr && (
                                     <>
                                         <Layout.Card label="Token Info">
-                                            <Info />
+                                            <div className="p-2">
+                                                <Info tokenAddr={tokenAddr} />
+                                            </div>
                                         </Layout.Card>
                                         <Layout.Card label="Roles">
                                             <div className="flex flex-wrap">
