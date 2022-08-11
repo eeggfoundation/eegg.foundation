@@ -3,7 +3,9 @@ import {
     useContractRead,
     useToken,
 } from 'wagmi'
-import { underscorefy } from './../../utils'
+import { toast } from 'react-toastify'
+import { RefreshIcon } from '@heroicons/react/outline'
+import { classNames, underscorefy } from './../../utils'
 import { Token } from './../../blockchain'
 import { Semaphore } from './../../components/Semaphore'
 import Spinner from './../../components/Spinner'
@@ -14,6 +16,7 @@ const Info = (props: {tokenAddr: string}) => {
         error: pausedError,
         isLoading: isPausedLoading,
         isError: isPausedError,
+        refetch: pausedRefetch,
     } = useContractRead({
         addressOrName: props.tokenAddr,
         contractInterface: Token.abi,
@@ -41,12 +44,27 @@ const Info = (props: {tokenAddr: string}) => {
             : [Semaphore.State.Green, 'Running']
     }, [pausedData, pausedError, isPausedLoading, isPausedError])
 
+    const onRefresh = () => {
+        pausedRefetch().then(() => {
+            toast('👍🏻')
+        })
+    }
+
     return (
         <div className="w-full">
-            <div className="inline-flex items-center space-x-2 px-2">
-                <Semaphore state={pausedSemaphoreState} className="w-4 h-4" />
-                <span>{pausedMsg}</span>
+            <div className="flex flex-row justify-between">
+                <div className="inline-flex items-center space-x-2 px-2">
+                    <Semaphore state={pausedSemaphoreState} className="w-4 h-4" />
+                    <span>{pausedMsg}</span>
+                </div>
+                <div>
+                    <RefreshIcon
+                        onClick={onRefresh}
+                        className={classNames('w-4 h-4', isPausedLoading ? 'animate-spin text-gray-400': 'cursor-pointer')}
+                    />
+                </div>
             </div>
+
             <div className="border border-gray-300 p-2">
                 {(isPausedLoading || isTokenLoading) ? (
                     <Spinner className="w-4 h-4" />

@@ -3,6 +3,7 @@ import Wallet from '../../providers/Wallet'
 import { Layout } from '../../components/Layout'
 
 import Info from './Info'
+import RolesOf from './RolesOf'
 import GrantRole from './GrantRole'
 import RevokeRole from './RevokeRole'
 
@@ -21,7 +22,10 @@ const Root = () => {
                                                 <Info tokenAddr={tokenAddr} />
                                             </div>
                                         </Layout.Card>
-                                        <Layout.Card label="Roles">
+                                        <Layout.Card label="RolesOf">
+                                            <RolesOf  tokenAddr={tokenAddr} />
+                                        </Layout.Card>
+                                        <Layout.Card label="Roles Grant/Revoke">
                                             <div className="flex flex-wrap">
                                                 <div className="w-full md:w-1/2">
                                                     <h4 className="px-4">Grant</h4>

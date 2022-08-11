@@ -31,7 +31,7 @@ const SemaphoreRoot = (props: {state: State, className?: string}) => {
     return (
         <svg viewBox="0 0 24 24" className={classNames(classColor, props.className ?? '')}>
             <circle fill="currentColor" cx="12" cy="12" r="6" className={classPulse} />
-            <circle fill="currentColor" fill-opacity="0.42" cx="12" cy="12" r="12"/>
+            <circle fill="currentColor" fillOpacity="0.42" cx="12" cy="12" r="12"/>
         </svg>
     )
 }
