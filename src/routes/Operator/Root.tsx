@@ -16,6 +16,20 @@ const Root = () => {
                         <>
                             {tokenAddr && (
                                 <>
+                                    <Layout.Card label="Note">
+                                        <div className="flex flex-wrap">
+                                            <div className="p-2 md:w-1/2 lg:w-1/3">
+                                                <span className="font-bold">Note: </span>
+                                                Successful write transactions executed here (like Grant/Revoke roles) are pushed to the blockchain network.
+                                                It does not mean they have already settled themselves. You have to wait for certain confirmations to see the desired change.
+                                            </div>
+                                            <div className="p-2 md:w-1/2 lg:w-1/3">
+                                                <span className="font-bold">Tx: </span>
+                                                Every successful transaction outputs its Tx hash as a clickable link to Etherscan, where you can see its confirmations and status.
+                                            </div>
+                                        </div>
+                                    </Layout.Card>
+
                                     <Layout.Card label="Token Info">
                                         <div className="p-2">
                                             <Info tokenAddr={tokenAddr} />
@@ -42,7 +56,7 @@ const Root = () => {
                                     </Layout.Card>
 
                                     {walletAddr && (
-                                        <Pauser addrOrName={walletAddr} />
+                                        <Pauser tokenAddr={tokenAddr} addrOrName={walletAddr} />
                                     )}
                                 </>
                             )}

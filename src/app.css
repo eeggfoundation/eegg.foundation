@@ -27,6 +27,18 @@ h4 {
         @apply hover:bg-white hover:text-gray-300;
     }
 
+    .app-btn-danger {
+        @apply inline-flex bg-white text-red-600 px-4 py-2 border-red-600 border-4 font-bold;
+        @apply hover:bg-red-600 hover:text-white;
+        @apply transition-colors ease-in-out duration-300;
+    }
+
+    .app-btn-danger:disabled {
+        @apply text-gray-300 border-gray-300;
+        @apply cursor-not-allowed;
+        @apply hover:bg-white hover:text-gray-300;
+    }
+
     .app-err {
         @apply text-sm text-red-600;
     }
