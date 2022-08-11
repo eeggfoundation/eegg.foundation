@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom'
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { LogoutIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { classNames } from './utils'
 import Wallet from './providers/Wallet'
 import Footer from './components/Footer'
@@ -20,7 +20,7 @@ const navigation = [
 const App = () => {
     return (
         <Wallet.Consumer>
-            {({ isConnected, chain: walletChain, walletAddr }) => (
+            {({ isConnected, disconnect, chain: walletChain, walletAddr }) => (
                 <>
                     <div className="flex flex-col bg-gray-50 overflow-hidden min-h-[95vh]">
                         <Popover>
@@ -69,6 +69,7 @@ const App = () => {
                                                         {walletAddr && (
                                                             <span className="truncate w-36">{walletAddr}</span>
                                                         )}
+                                                        <LogoutIcon className="flex shrink-0 w-4 h-4 cursor-pointer" onClick={disconnect} />
                                                     </div>
                                                 </span>
                                             </span>

@@ -3,69 +3,110 @@ import React, {
     useState,
 } from 'react'
 import {
+    Chain,
     Connector,
     useAccount,
+    useConnect,
+    useDisconnect,
     useNetwork,
+    useSwitchNetwork,
 } from 'wagmi'
 import { Token } from './../blockchain'
+import logoDefault from './../assets/1x1-00000000.png'
+import logoCoinbaseWallet from './../assets/cbw.png'
+import logoMetaMask from './../assets/mm.png'
+import logoWalletConnect from './../assets/wc.png'
 
 interface API {
     isConnected: boolean,
     isConnecting: boolean,
 
+    connect: (c: Connector) => void,
+    disconnect: () => void,
+    switchNetwork: (id: number) => void,
+
     tokenAddr: string | undefined,
 
     walletAddr: string | undefined,
     chain: string | undefined,
+    chains: Chain[],
     connector: Connector | undefined,
-
-    //toggle: () => void,
+    connectors: Connector[],
 }
 
 const defaultCtx = {
     isConnected: false,
     isConnecting: false,
 
+    connect: () => {},
+    disconnect: () => {},
+    switchNetwork: () => {},
+
     tokenAddr: undefined,
 
     walletAddr: undefined,
     chain: undefined,
+    chains: [],
     connector: undefined,
+    connectors: [],
 }
 
+const connectorLogo = (name: string) => {
+    switch (name.toLowerCase()) {
+        case 'coinbase wallet':
+            return logoCoinbaseWallet
+        case 'metamask':
+            return logoMetaMask
+        case 'walletconnect':
+            return logoWalletConnect
+    }
+
+    return logoDefault
+}
 
 const Context = React.createContext<API>(defaultCtx)
 
 const Provider = (props: React.PropsWithChildren) => {
-    /*
-    const onCtxToggle = () => {
-        setCtx(ctx => ({
-            ...ctx,
-            isConnected: !ctx.isConnected,
-        }))
-    }
-    */
+    const account = useAccount()
+
+    const { connect, connectors, isLoading: isConnecting, pendingConnector } = useConnect()
+
+    const { disconnect } = useDisconnect()
+
+    const network = useNetwork()
+
+    const { chains, switchNetwork } = useSwitchNetwork()
 
     const [ctx, setCtx] = useState<API>({
         ...defaultCtx,
-        //toggle: onCtxToggle,
+        connect: (c) => {
+            connect({ connector: c })
+        },
+        switchNetwork: (id) => {
+            console.log(id)
+            switchNetwork && switchNetwork(id)
+        },
     })
-
-    const account = useAccount()
-
-    const network = useNetwork()
 
     useEffect(() => {
         setCtx(ctx => ({ ...ctx, walletAddr: account.address ?? undefined }))
     }, [account.address])
 
     useEffect(() => {
+        setCtx(ctx => ({ ...ctx, connectors: connectors }))
+    }, [connectors, pendingConnector])
+
+    useEffect(() => {
         setCtx(ctx => ({ ...ctx, isConnected: account.isConnected }))
     }, [account.isConnected])
 
     useEffect(() => {
-        setCtx(ctx => ({ ...ctx, isConnecting: account.isConnecting || account.isReconnecting }))
-    }, [account.isConnecting, account.isReconnecting])
+        setCtx(ctx => ({ ...ctx, isConnecting: account.isConnecting || account.isReconnecting || isConnecting }))
+    }, [account.isConnecting, account.isReconnecting, isConnecting])
+
+    useEffect(() => {
+        setCtx(ctx => ({ ...ctx, disconnect: disconnect }))
+    }, [disconnect])
 
     useEffect(() => {
         setCtx(ctx => ({
@@ -78,6 +119,10 @@ const Provider = (props: React.PropsWithChildren) => {
                 : undefined,
         }))
     }, [network.chain])
+
+    useEffect(() => {
+        setCtx(ctx => ({ ...ctx, chains: chains }))
+    }, [chains])
 
     useEffect(() => {
         setCtx(ctx => ({ ...ctx, connector: account.connector }))
@@ -101,15 +146,31 @@ const Consumer = (props: {children: (api:API) => React.ReactNode}) => {
 const Connected = (props: React.PropsWithChildren) => {
     return (
         <Consumer>
-            {({ isConnected }) => (
+            {({ isConnected, isConnecting, connect, connectors }) => (
                 <>
                     {isConnected ? (
                         <>{props.children}</>
                     ) : (
-                        <div className="w-full bg-gray-200 justfify-center items-center min-h-24">
-                            <button className="app-btn">
-                                Connect your Wallet
-                            </button>
+                        <div className="flex w-full justfify-center items-center min-h-[50vh]">
+                            <div className="flex flex-col space-y-4 mx-auto">
+                                <h2>Connect your wallet to continue</h2>
+                                {connectors
+                                    .filter((c) => c.ready)
+                                    .map((c) => (
+                                        <button
+                                            key={c.id}
+                                            onClick={() => { connect(c) }}
+                                            className="app-btn"
+                                            disabled={isConnecting}
+                                        >
+                                            <img src={connectorLogo(c.name)} className="w-6 h-6 mr-2" alt={c.name} />
+                                            {!isConnecting && 'Connect '}
+                                            {c.name}
+                                            {isConnecting && ' is connecting'}
+                                        </button>
+                                    ))
+                                }
+                            </div>
                         </div>
                     )}
                 </>
@@ -126,12 +187,30 @@ const ConnectedOnSupportedNetwork = (props: React.PropsWithChildren) => {
     return (
         <Connected>
             <Consumer>
-                {({ chain }) => (
+                {({ chain, chains, switchNetwork }) => (
                     <>
                         {chain && isSupported(chain) ? (
                             <>{props.children}</>
                         ) : (
-                            <div></div>
+                            <div className="flex w-full justfify-center items-center min-h-[50vh]">
+                                <div className="flex flex-col space-y-4 mx-auto">
+                                    <p className="font-bold">
+                                        Your are connected to {chain} network. Please switch to one where {Token.symbol} Token is deployed.
+                                    </p>
+                                    {chains
+                                        .filter((c) => Token.addr.hasOwnProperty(c.name.toLowerCase()))
+                                        .map((c) => (
+                                            <button
+                                                key={c.id}
+                                                onClick={() => { switchNetwork(c.id) }}
+                                                className="app-btn"
+                                            >
+                                                {c.name}
+                                            </button>
+                                        ))
+                                    }
+                                </div>
+                            </div>
                         )}
                     </>
                 )}
