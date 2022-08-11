@@ -31,6 +31,7 @@ interface API {
     chain: string | undefined,
     chains: Chain[],
     connector: Connector | undefined,
+    pendingConnector: Connector | undefined,
     connectors: Connector[],
 }
 
@@ -48,6 +49,7 @@ const defaultCtx = {
     chain: undefined,
     chains: [],
     connector: undefined,
+    pendingConnector: undefined,
     connectors: [],
 }
 
@@ -93,7 +95,7 @@ const Provider = (props: React.PropsWithChildren) => {
     }, [account.address])
 
     useEffect(() => {
-        setCtx(ctx => ({ ...ctx, connectors: connectors }))
+        setCtx(ctx => ({ ...ctx, connectors: connectors, pendingConnector: pendingConnector }))
     }, [connectors, pendingConnector])
 
     useEffect(() => {
@@ -146,7 +148,7 @@ const Consumer = (props: {children: (api:API) => React.ReactNode}) => {
 const Connected = (props: React.PropsWithChildren) => {
     return (
         <Consumer>
-            {({ isConnected, isConnecting, connect, connectors }) => (
+            {({ isConnected, isConnecting, connect, connectors, pendingConnector }) => (
                 <>
                     {isConnected ? (
                         <>{props.children}</>
@@ -166,7 +168,7 @@ const Connected = (props: React.PropsWithChildren) => {
                                             <img src={connectorLogo(c.name)} className="w-6 h-6 mr-2" alt={c.name} />
                                             {!isConnecting && 'Connect '}
                                             {c.name}
-                                            {isConnecting && ' is connecting'}
+                                            {isConnecting && pendingConnector?.id == c.id && ' is connecting'}
                                         </button>
                                     ))
                                 }
