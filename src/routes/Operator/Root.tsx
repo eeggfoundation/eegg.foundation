@@ -1,4 +1,3 @@
-import React from 'react'
 import Wallet from '../../providers/Wallet'
 import { Layout } from '../../components/Layout'
 

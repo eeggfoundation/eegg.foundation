@@ -15,6 +15,7 @@ import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 import { ToastContainer, Slide } from 'react-toastify'
 
@@ -26,6 +27,7 @@ import Wallet from './providers/Wallet'
 import App from './App'
 import Welcome from './routes/Welcome'
 import Token from './routes/Token/Root'
+import TokenRegisterToWallet from './routes/Token/RegisterToWallet/Root'
 import Project from './routes/Project'
 import Products from './routes/Products'
 import Operator from './routes/Operator/Root'
@@ -52,6 +54,12 @@ const client = createClient({
                 appName: 'Eegg Foundation',
             },
         }),
+        new WalletConnectConnector({
+            chains,
+            options: {
+                qrcode: true,
+            },
+        })
     ],
     provider,
     webSocketProvider,
@@ -66,6 +74,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         <Route path="/" element={<App />}>
                             <Route index element={<Welcome />} />
                             <Route path="/token" element={<Token />} />
+                            <Route path="/token/register-to-wallet" element={<TokenRegisterToWallet />} />
                             <Route path="/project" element={<Project />} />
                             <Route path="/products" element={<Products />} />
                             <Route path="/operator" element={<Operator />} />

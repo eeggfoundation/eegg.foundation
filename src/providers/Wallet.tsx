@@ -3,6 +3,7 @@ import React, {
     useState,
 } from 'react'
 import {
+    Connector,
     useAccount,
     useNetwork,
 } from 'wagmi'
@@ -16,6 +17,7 @@ interface API {
 
     walletAddr: string | undefined,
     chain: string | undefined,
+    connector: Connector | undefined,
 
     //toggle: () => void,
 }
@@ -28,6 +30,7 @@ const defaultCtx = {
 
     walletAddr: undefined,
     chain: undefined,
+    connector: undefined,
 }
 
 
@@ -76,6 +79,10 @@ const Provider = (props: React.PropsWithChildren) => {
         }))
     }, [network.chain])
 
+    useEffect(() => {
+        setCtx(ctx => ({ ...ctx, connector: account.connector }))
+    }, [account.connector])
+
     return (
         <Context.Provider value={ctx}>
             {props.children}
@@ -91,17 +98,52 @@ const Consumer = (props: {children: (api:API) => React.ReactNode}) => {
     )
 }
 
-const WithSupportedNetworks = (props: React.PropsWithChildren) => {
+const Connected = (props: React.PropsWithChildren) => {
     return (
-        <>
-            {props.children}
-        </>
+        <Consumer>
+            {({ isConnected }) => (
+                <>
+                    {isConnected ? (
+                        <>{props.children}</>
+                    ) : (
+                        <div className="w-full bg-gray-200 justfify-center items-center min-h-24">
+                            <button className="app-btn">
+                                Connect your Wallet
+                            </button>
+                        </div>
+                    )}
+                </>
+            )}
+        </Consumer>
+    )
+}
+
+const ConnectedOnSupportedNetwork = (props: React.PropsWithChildren) => {
+    const isSupported = (chain: string) => {
+        return Token.addr.hasOwnProperty(chain.toLowerCase())
+    }
+
+    return (
+        <Connected>
+            <Consumer>
+                {({ chain }) => (
+                    <>
+                        {chain && isSupported(chain) ? (
+                            <>{props.children}</>
+                        ) : (
+                            <div></div>
+                        )}
+                    </>
+                )}
+            </Consumer>
+        </Connected>
     )
 }
 
 export default {
+    Connected,
+    ConnectedOnSupportedNetwork,
     Context,
     Consumer,
     Provider,
-    WithSupportedNetworks,
 }
