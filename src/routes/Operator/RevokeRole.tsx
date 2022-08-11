@@ -28,17 +28,17 @@ const RevokeRole = (props: React.PropsWithChildren<{tokenAddr: string}>) => {
 
     return (
         <div className="flex flex-col border border-gray-300 p-2">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-1">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
                 <div className="flex flex-col">
-                    <label>Role:</label>
-                    <select {...register('role', {required:true})}>
+                    <label className="app-label">Role:</label>
+                    <select {...register('role', {required:true})} className="app-select">
                         {Token.roles.map((role, idx) => (
                             <option key={idx} value={role.value}>{role.name}</option>
                         ))}
                     </select>
                 </div>
                 <div className="flex flex-col">
-                    <label>From:</label>
+                    <label className="app-label">From:</label>
                     <input {...register('addrOrName', {required:true})} placeholder="0x.." className="app-input text-sm" />
                 </div>
                 <div>

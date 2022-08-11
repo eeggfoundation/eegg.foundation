@@ -30,4 +30,16 @@ h4 {
     .app-err {
         @apply text-sm text-red-600;
     }
+
+    .app-input {
+        @apply outline-none p-2 bg-gray-50 border-b-2 border-gray-300 focus:border-gray-500;
+    }
+
+    .app-label {
+        @apply text-sm text-purple-500;
+    }
+
+    .app-select {
+        @apply outline-none p-2 bg-gray-50 border-b-2 border-gray-300 focus:border-gray-500;
+    }
 }
