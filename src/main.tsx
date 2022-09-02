@@ -28,7 +28,6 @@ import App from './App'
 import Welcome from './routes/Welcome'
 import Token from './routes/Token/Root'
 import TokenRegisterToWallet from './routes/Token/RegisterToWallet/Root'
-import Project from './routes/Project'
 import Products from './routes/Products'
 import Operator from './routes/Operator/Root'
 
@@ -75,7 +74,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                             <Route index element={<Welcome />} />
                             <Route path="/token" element={<Token />} />
                             <Route path="/token/register-to-wallet" element={<TokenRegisterToWallet />} />
-                            <Route path="/project" element={<Project />} />
                             <Route path="/products" element={<Products />} />
                             <Route path="/operator" element={<Operator />} />
                         </Route>
