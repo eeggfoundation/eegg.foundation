@@ -24,11 +24,6 @@ const Welcome = () => {
                         </div>
                         <div className="flex md:justify-end">
                             <NavLink to="/project" className="app-btn">
-                                Project
-                            </NavLink>
-                        </div>
-                        <div className="flex md:justify-end">
-                            <NavLink to="/project" className="app-btn">
                                 Products
                             </NavLink>
                         </div>

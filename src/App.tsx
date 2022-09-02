@@ -12,7 +12,6 @@ import Mark from './components/Mark'
 
 const navigation = [
     { name: 'Token', href: '/token' },
-    { name: 'Project', href: '/project' },
     { name: 'Products', href: '/products' },
     { name: '<Operator />', href: '/operator' },
   ]
