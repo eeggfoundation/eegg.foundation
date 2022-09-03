@@ -3,7 +3,6 @@ import React, {
     useState,
 } from 'react'
 import {
-    Chain,
     Connector,
     useAccount,
     useConnect,
@@ -23,13 +22,11 @@ interface API {
 
     connect: (c: Connector) => void,
     disconnect: () => void,
-    switchNetwork: (id: number) => void,
 
     tokenAddr: string | undefined,
 
     walletAddr: string | undefined,
     chain: string | undefined,
-    chains: Chain[],
     connector: Connector | undefined,
     pendingConnector: Connector | undefined,
     connectors: Connector[],
@@ -41,13 +38,11 @@ const defaultCtx = {
 
     connect: () => {},
     disconnect: () => {},
-    switchNetwork: () => {},
 
     tokenAddr: undefined,
 
     walletAddr: undefined,
     chain: undefined,
-    chains: [],
     connector: undefined,
     pendingConnector: undefined,
     connectors: [],
@@ -77,16 +72,10 @@ const Provider = (props: React.PropsWithChildren) => {
 
     const network = useNetwork()
 
-    const { chains, switchNetwork } = useSwitchNetwork()
-
     const [ctx, setCtx] = useState<API>({
         ...defaultCtx,
         connect: (c) => {
             connect({ connector: c })
-        },
-        switchNetwork: (id) => {
-            console.log(id)
-            switchNetwork && switchNetwork(id)
         },
     })
 
@@ -121,10 +110,6 @@ const Provider = (props: React.PropsWithChildren) => {
                 : undefined,
         }))
     }, [network.chain])
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, chains: chains }))
-    }, [chains])
 
     useEffect(() => {
         setCtx(ctx => ({ ...ctx, connector: account.connector }))
@@ -182,6 +167,8 @@ const Connected = (props: React.PropsWithChildren) => {
 }
 
 const ConnectedOnSupportedNetwork = (props: React.PropsWithChildren) => {
+    const { chains, switchNetwork } = useSwitchNetwork()
+
     const isSupported = (chain: string) => {
         return Token.addr.hasOwnProperty(chain.toLowerCase())
     }
@@ -189,7 +176,7 @@ const ConnectedOnSupportedNetwork = (props: React.PropsWithChildren) => {
     return (
         <Connected>
             <Consumer>
-                {({ chain, chains, switchNetwork }) => (
+                {({ chain }) => (
                     <>
                         {chain && isSupported(chain) ? (
                             <>{props.children}</>
@@ -199,7 +186,7 @@ const ConnectedOnSupportedNetwork = (props: React.PropsWithChildren) => {
                                     <p className="font-bold">
                                         Your are connected to {chain} network. Please switch to one where {Token.symbol} Token is deployed.
                                     </p>
-                                    {chains
+                                    {switchNetwork && chains
                                         .filter((c) => Token.addr.hasOwnProperty(c.name.toLowerCase()))
                                         .map((c) => (
                                             <button
