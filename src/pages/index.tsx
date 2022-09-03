@@ -4,7 +4,7 @@ import Head from 'next/head'
 //import { Account, Connect, NetworkSwitcher } from '@/components'
 //import { useIsMounted } from '@/hooks'
 
-import { Header } from '@/components/Header'
+import { Header } from '@/components/ui/Header'
 
 export default function Index() {
     //const isMounted = useIsMounted()
