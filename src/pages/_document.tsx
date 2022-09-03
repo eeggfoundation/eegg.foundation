@@ -4,6 +4,10 @@ const Document = () => {
     return (
         <Html lang="en">
             <Head>
+                <meta
+                    name="description"
+                    content="By leveraging insights from our network of industry insiders, you’ll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses."
+                />
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -14,7 +18,7 @@ const Document = () => {
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link href="https://fonts.bunny.net/css?family=ibm-plex-sans:400,600" rel="stylesheet" />
             </Head>
-            <body className="font-sans flex h-full flex-col">
+            <body className="font-sans flex h-full flex-col bg-stone-100">
                 <Main />
                 <NextScript />
             </body>

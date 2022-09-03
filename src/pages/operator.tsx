@@ -1,19 +1,14 @@
 import Head from 'next/head'
-//import { useAccount } from 'wagmi'
-
-//import { Account, Connect, NetworkSwitcher } from '@/components'
-//import { useIsMounted } from '@/hooks'
-
 import { Header } from '@/components/Header'
 
-export default function Index() {
+export default function Operator() {
     //const isMounted = useIsMounted()
     //const { isConnected } = useAccount()
 
     return (
         <>
             <Head>
-                <title>eegg.foundation</title>
+                <title>Operator eegg.foundation</title>
             </Head>
             <Header />
             <main>
