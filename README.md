@@ -1,11 +1,11 @@
+# eegg.foundation web
+
 <p>
     <picture>
         <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/eeggfoundation/.github/main/content/eegg-logo-light.svg">
         <img alt="Eegg" src="https://raw.githubusercontent.com/eeggfoundation/.github/main/content/eegg-logo-dark.svg" width="auto" height="60">
     </picture>
 </p>
-
-# eegg.foundation web
 
 ## Environment Configuration
 
@@ -17,7 +17,7 @@ Configuration keys and their explanation follow:
 If you want to use [Alchemy](https://www.alchemy.com/) as your web3 provider, assign your API key:
 
 ```sh
-VITE_ALCHEMY_API_KEY=<your API key>
+NEXT_PUBLIC_ALCHEMY_API_KEY=<your API key>
 ```
 
 ## Frontend
@@ -29,7 +29,7 @@ In the project directory, you can run:
 #### `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
 
