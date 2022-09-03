@@ -4,38 +4,25 @@
     "private": true,
     "license": "proprietary",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
     },
     "dependencies": {
         "@types/react": "^18.0.9",
         "@types/react-dom": "^18.0.3",
-        "@vitejs/plugin-react": "^2.0.0",
-        "autoprefixer": "^10.4.8",
-        "postcss": "^8.4.14",
-        "react": "^18.1.0",
-        "react-dom": "^18.1.0",
-        "tailwindcss": "^3.1.7",
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
+        "autoprefixer": "^10.4.7",
+        "next": "12.2.3",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "tailwindcss": "^3.1.4"
     },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "devDependencies": {
+        "@types/node": "^18.7.14",
+        "eslint": "8.15.0",
+        "eslint-config-next": "12.2.3",
+        "prettier": "^2.6.2",
+        "prettier-plugin-tailwindcss": "^0.1.11"
     }
 }
