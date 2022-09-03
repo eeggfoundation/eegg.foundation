@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+    @apply text-4xl md:text-5xl lg:text-7xl font-bold;
+}
+
 h2 {
     @apply text-4xl font-bold;
 }
@@ -12,6 +16,11 @@ h3 {
 
 h4 {
     @apply text-xl font-bold;
+}
+
+.has-bg-grid {
+    @apply bg-left-top bg-contain;
+    background-image: url(/has-bg-grid.png);
 }
 
 @layer components {

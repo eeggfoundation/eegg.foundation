@@ -1,12 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import { Token } from './../blockchain'
+import Section from './../components/Section'
+import ImgArchitectureUrl from './../assets/architecture.png'
 
 const Welcome = () => {
     return (
         <>
             <div className="flex flex-wrap w-full min-h-[85vh] py-16">
                 <div className="w-full md:w-2/3 md:pr-4">
-                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold">
+                    <h1>
                         The world of Art redefined through decentralization.
                     </h1>
                     <h2 className="mt-4 text-2xl lg:text-3xl lg:leading-normal lg:w-2/3">
@@ -31,21 +33,35 @@ const Welcome = () => {
                 </div>
             </div>
 
-            <div className="border-t-2 border-gray-300">
-                <div className="flex container mx-auto min-h-[50vh] justify-center">
-                    <div className="flex flex-col md:max-w-3xl m-auto py-12">
-                        <p className="text-2xl font-bold text-center">
-                            Do not you see the {Token.symbol} Token in your Wallet?
-                        </p>
-                        <p className="text-center mt-4">
-                            <NavLink to="/token/register-to-wallet" className="app-btn">
-                                Register to your Wallet
-                            </NavLink>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <Section
+                className="border-t-2 border-gray-300"
+                label="Architecture"
+                labelSide="left"
+            >
+                <img src={ImgArchitectureUrl} className="w-full h-auto" />
+            </Section>
 
+            <Section
+                className="border-t-2 border-gray-300"
+                label="Roadmap"
+                labelSide="right"
+            >
+                ...
+            </Section>
+
+            <Section
+                className="border-t-2 border-gray-300 has-bg-grid"
+
+            >
+                <p className="text-2xl font-bold text-center">
+                    Do not you see the {Token.symbol} Token in your Wallet?
+                </p>
+                <p className="text-center mt-4">
+                    <NavLink to="/token/register-to-wallet" className="app-btn">
+                        Register to your Wallet
+                    </NavLink>
+                </p>
+            </Section>
         </>
     )
 }
