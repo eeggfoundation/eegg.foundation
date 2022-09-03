@@ -1,4 +1,4 @@
-import { CheckCircleIcon, ExclamationCircleIcon, ExternalLinkIcon } from '@heroicons/react/outline'
+import { ArrowTopRightOnSquareIcon, CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { classNames } from './../utils'
 import Spinner from './Spinner'
 
@@ -35,7 +35,7 @@ const Tx = (props: {
                                 <span className="truncate">
                                     Tx:{props.hash}
                                 </span>
-                                <ExternalLinkIcon className="w-3 h-3 text-gray-400 ml-0.5" />
+                                <ArrowTopRightOnSquareIcon className="w-3 h-3 text-gray-400 ml-0.5" />
                             </a>
                         </span>
                     ) : (

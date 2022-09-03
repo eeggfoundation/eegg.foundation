@@ -4,7 +4,7 @@ import {
     useToken,
 } from 'wagmi'
 import { toast } from 'react-toastify'
-import { RefreshIcon } from '@heroicons/react/outline'
+import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { classNames, underscorefy } from './../../utils'
 import { Token } from './../../blockchain'
 import { Semaphore } from './../../components/Semaphore'
@@ -58,7 +58,7 @@ const Info = (props: {tokenAddr: string}) => {
                     <span>{pausedMsg}</span>
                 </div>
                 <div>
-                    <RefreshIcon
+                    <ArrowPathIcon
                         onClick={onRefresh}
                         className={classNames('w-4 h-4', isPausedLoading ? 'animate-spin text-gray-400': 'cursor-pointer')}
                     />
@@ -98,6 +98,3 @@ const Info = (props: {tokenAddr: string}) => {
 }
 
 export default Info
-
-/*
-                    */

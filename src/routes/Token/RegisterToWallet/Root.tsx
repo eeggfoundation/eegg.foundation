@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Connector } from 'wagmi'
 import { toast } from 'react-toastify'
-import { CheckCircleIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { Token } from './../../../blockchain'
 import Wallet from '../../../providers/Wallet'
 import { Layout } from './../../../components/Layout'
