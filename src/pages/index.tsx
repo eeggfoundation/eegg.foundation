@@ -5,6 +5,7 @@ import Head from 'next/head'
 //import { useIsMounted } from '@/hooks'
 
 import { Header } from '@/components/ui/Header'
+import { Hero } from '@/components/index/Hero'
 
 export default function Index() {
     //const isMounted = useIsMounted()
@@ -17,7 +18,7 @@ export default function Index() {
             </Head>
             <Header />
             <main>
-
+                <Hero />
             </main>
         </>
     )
