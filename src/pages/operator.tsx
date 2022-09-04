@@ -1,13 +1,8 @@
 import Head from 'next/head'
-import { useAccount } from 'wagmi'
 
 import { Header } from '@/components/ui/Header'
-import { useIsMounted } from '@/hooks'
 
 export default function Operator() {
-    const { address } = useAccount()
-    const isMounted = useIsMounted()
-
     return (
         <>
             <Head>
@@ -15,14 +10,9 @@ export default function Operator() {
             </Head>
             <Header />
             <main>
-                <>
-                    {isMounted && (
-                        <>
-                            {address ?? '---'}
-                        </>
-                    )}
-                </>
-
+                <p>
+                    (wip)
+                </p>
             </main>
         </>
     )
