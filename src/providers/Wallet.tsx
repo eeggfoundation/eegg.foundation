@@ -68,42 +68,6 @@ const Consumer = (props: { children: (api:API) => React.ReactNode }) => {
     )
 }
 
-/*
-const Connected = (props: React.PropsWithChildren) => {
-    const isMounted = useIsMounted()
-    const { connector, isConnected } = useAccount()
-    const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
-
-    return (
-        <Consumer>
-            {({ isConnected, isConnecting }) => (
-                <>
-                    {isConnected ? (
-                        <>{props.children}</>
-                    ) : (
-                        <div>
-                            <p>
-                                Connect your wallet
-                            </p>
-                            {connectors
-                                .filter((x) => isMounted && x.ready && x.id !== connector?.id)
-                                .map((x) => (
-                                    <Button
-                                        key={x.id}
-                                    >
-                                        {x.name}
-                                    </Button>
-                                ))
-                            }
-                        </div>
-                    )}
-                </>
-            )}
-        </Consumer>
-    )
-}
-*/
-
 const Wallet = {
     Consumer,
     Provider,
