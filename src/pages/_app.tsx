@@ -1,4 +1,6 @@
 import '@/styles/globals.css'
+import 'react-toastify/dist/ReactToastify.css'
+
 import type { AppProps } from 'next/app'
 import * as React from 'react'
 import {
@@ -12,6 +14,10 @@ import { publicProvider } from 'wagmi/providers/public'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+
+import Wallet from '@/providers/Wallet'
+
+import { ToastContainer, Slide } from 'react-toastify'
 
 let providers = [
     publicProvider(),
@@ -49,7 +55,21 @@ const client = createClient({
 const App = ({ Component, pageProps }: AppProps) => {
     return (
         <WagmiConfig client={client}>
-            <Component {...pageProps} />
+            <Wallet.Provider>
+                <Component {...pageProps} />
+            </Wallet.Provider>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover
+                transition={Slide}
+            />
         </WagmiConfig>
     )
 }
