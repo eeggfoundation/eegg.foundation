@@ -9,6 +9,7 @@ import { Hero } from '@/components/index/Hero'
 import { Features } from '@/components/index/Features'
 import { Architecture } from '@/components/index/Architecture'
 import { Token } from '@/components/index/Token'
+import { Products } from '@/components/index/Products'
 
 export default function Index() {
     //const isMounted = useIsMounted()
@@ -25,6 +26,7 @@ export default function Index() {
                 <Features />
                 <Architecture />
                 <Token />
+                <Products />
             </main>
         </>
     )
