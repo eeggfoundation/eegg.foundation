@@ -4,10 +4,12 @@ import {
     Connector,
     useAccount,
     useConnect,
-    useDisconnect,
     useEnsName,
     useNetwork,
 } from 'wagmi'
+
+import { Button, ConnectorImage } from '@/components/ui'
+import { useIsMounted } from '@/hooks'
 
 interface API {
     address: string | undefined
@@ -68,9 +70,46 @@ const Consumer = (props: { children: (api:API) => React.ReactNode }) => {
     )
 }
 
+const ConnectWidget = () => {
+    const isMounted = useIsMounted()
+    const { connector, isConnected } = useAccount()
+    const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+
+    return (
+        <div className="flex flex-col space-y-2">
+            {connectors
+                .filter((x) => isMounted && x.ready && x.id !== connector?.id)
+                .map((x) => (
+                    <div key={x.id} onClick={() => connect({ connector: x })}>
+                        <Button className="w-full">
+                            <ConnectorImage id={x.id} className="w-6 h-6" />
+                            <span className="ml-2">
+                                {isLoading ? (
+                                        <>
+                                            {x.id === pendingConnector?.id ? (
+                                                `${x.name} is connecting ..`
+                                            ) : (
+                                                `${x.name}`
+                                            )}
+                                        </>
+                                    ) : (
+                                        `Connect ${x.name}`
+                                    )
+                                }
+                            </span>
+                        </Button>
+                    </div>
+                ))
+            }
+        </div>
+    )
+}
+
 const Wallet = {
     Consumer,
     Provider,
+
+    ConnectWidget,
 }
 
 export default Wallet

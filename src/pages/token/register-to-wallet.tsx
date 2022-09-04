@@ -59,7 +59,7 @@ export default function RegisterToWallet() {
             <main>
                 <Container>
                     <Wallet.Consumer>
-                        {({ address, ensName, chain, connector, isConnected, isConnecting }) => (
+                        {({ address, chain, connector, isConnected }) => (
                             <>
                                 {isConnected ? (
                                     <div className="flex flex-col max-w-4xl space-y-8 mx-auto">
@@ -114,7 +114,9 @@ export default function RegisterToWallet() {
                                         </div>
                                     </div>
                                 ) : (
-                                    <div>Connect</div>
+                                    <div className="max-w-2xl mx-auto">
+                                        <Wallet.ConnectWidget />
+                                    </div>
                                 )}
                             </>
                         )}
