@@ -2,9 +2,7 @@ import artifact from '@/artifacts/EeggToken.json'
 
 const token = {
     abi: <object[]> artifact.abi,
-    addr: <Record<string, string>> {
-        goerli: '0x38871DA43c4365Ddd39292d4B0Ed26eAA1C827d0',
-    },
+    addr: <string> '0xfBe4E92c664cd094DEa9Dcf60287676f8938eb10',
     image: 'https://raw.githubusercontent.com/eeggfoundation/.github/main/content/eegg-wallet-icon.png',
     roles: [
         { name: 'Admin', value: '0x00' },               // 0x0000000000000000000000000000000000000000000000000000000000000000
