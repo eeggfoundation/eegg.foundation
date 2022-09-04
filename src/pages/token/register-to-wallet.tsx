@@ -8,11 +8,14 @@ import {
 import { toast } from 'react-toastify'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 
-import { Account } from '@/components/ui/Account'
-import { Header } from '@/components/ui/Header'
-import { Button } from '@/components/ui/Button'
-import { Container } from '@/components/ui/Container'
-import { Spinner } from '@/components/ui/Spinner'
+import {
+    Account,
+    Button,
+    Container,
+    Footer,
+    Header,
+    Spinner,
+} from '@/components/ui'
 import Wallet from '@/providers/Wallet'
 
 import { token } from '@/content'
@@ -56,7 +59,7 @@ export default function RegisterToWallet() {
                 <title>Register Token to your wallet - eegg.foundation</title>
             </Head>
             <Header />
-            <main>
+            <main className="min-h-[75vh]">
                 <Container>
                     <Wallet.Consumer>
                         {({ address, chain, connector, isConnected }) => (
@@ -123,6 +126,7 @@ export default function RegisterToWallet() {
                     </Wallet.Consumer>
                 </Container>
             </main>
+            <Footer />
         </>
     )
 }
