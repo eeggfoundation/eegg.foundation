@@ -15,7 +15,7 @@ import { Container } from '@/components/ui/Container'
 import { Spinner } from '@/components/ui/Spinner'
 import Wallet from '@/providers/Wallet'
 
-import token from '@/content/token'
+import { token } from '@/content'
 
 export default function RegisterToWallet() {
     const [isRegistering, setIsRegistering] = useState(false)
@@ -28,13 +28,6 @@ export default function RegisterToWallet() {
     }
 
     const onRegister = (connector: Connector, chain: Chain) => {
-        const tokenAddr = token.addr[chain.name.toLowerCase()] ?? undefined
-
-        if (!tokenAddr) {
-            toast.error(`No deployed Token on chain: ${chain.name}`)
-            return
-        }
-
         if (!connector.watchAsset) {
             toast.error('Your wallet does not support watching assets.')
             return
@@ -42,7 +35,7 @@ export default function RegisterToWallet() {
 
         setIsRegistering(true)
         connector.watchAsset({
-            address: tokenAddr,
+            address: token.addr,
             image: token.image,
             symbol: token.symbol,
         })
@@ -55,8 +48,6 @@ export default function RegisterToWallet() {
             .finally(() => {
                 setIsRegistering(false)
             })
-
-        toast('onRegister')
     }
 
     return (
@@ -76,7 +67,7 @@ export default function RegisterToWallet() {
                                             <p className="pl-4 py-2">
                                                 Your wallet is connected.
                                             </p>
-                                            <Account />
+                                            <Account address={address} />
                                         </div>
                                         <div className="flex flex-col space-y-2 px-4">
                                             {isRegistered ? (
