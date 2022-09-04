@@ -6,7 +6,7 @@ const Document = () => {
             <Head>
                 <meta
                     name="description"
-                    content="By leveraging insights from our network of industry insiders, you’ll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses."
+                    content="Eegg Foundation facilitates the creation of a revolutionary new asset class on the Ethereum blockchain. Our mission is to bridge the world of art and technology by creating a new form of for galleries and artists."
                 />
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
