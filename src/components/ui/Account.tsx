@@ -33,7 +33,9 @@ export function Account(props: { address: string }) {
                                                 { balance ? (
                                                     `${balance.formatted} ${balance.symbol}`
                                                 ) : (
-                                                    `${balanceError.message}`
+                                                    <>
+                                                        {balanceError && `${balanceError.message}`}
+                                                    </>
                                                 )}
                                             </td>
                                         </tr>
