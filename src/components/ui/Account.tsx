@@ -1,8 +1,16 @@
+import { useBalance } from 'wagmi'
 import { WalletIcon } from '@heroicons/react/24/outline'
+
 import { ConnectorImage } from '@/components/ui/ConnectorImage'
+import { token } from '@/content'
 import Wallet from '@/providers/Wallet'
 
-export function Account() {
+export function Account(props: { address: string }) {
+    const { data: balance, error: balanceError } = useBalance({
+        addressOrName: props.address,
+        token: token.addr,
+    })
+
     return (
         <Wallet.Consumer>
             {({ address, ensName, chain, connector, isConnected }) => (
@@ -18,6 +26,16 @@ export function Account() {
                                         <tr>
                                             <td className="text-right pr-1">Address:</td>
                                             <td className="text-gray-900">{ ensName ?? address }</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="text-right pr-1">EEGG:</td>
+                                            <td className="text-gray-900">
+                                                { balance ? (
+                                                    `${balance.formatted} ${balance.symbol}`
+                                                ) : (
+                                                    `${balanceError.message}`
+                                                )}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td className="text-right pr-1">Connector:</td>
@@ -38,6 +56,5 @@ export function Account() {
                 </>
             )}
         </Wallet.Consumer>
-
     )
 }
