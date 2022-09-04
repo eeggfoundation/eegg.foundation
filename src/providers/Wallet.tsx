@@ -1,119 +1,59 @@
-import React, {
-    useEffect,
-    useState,
-} from 'react'
+import React, { useEffect, useState } from 'react'
 import {
+    Chain,
     Connector,
     useAccount,
     useConnect,
-    useDisconnect,
+    useEnsName,
     useNetwork,
-    useSwitchNetwork,
 } from 'wagmi'
-import { Token } from './../blockchain'
-import logoDefault from './../assets/1x1-00000000.png'
-import logoCoinbaseWallet from './../assets/cbw.png'
-import logoMetaMask from './../assets/mm.png'
-import logoWalletConnect from './../assets/wc.png'
+
+import { Button, ConnectorImage } from '@/components/ui'
+import { useIsMounted } from '@/hooks'
 
 interface API {
-    isConnected: boolean,
-    isConnecting: boolean,
+    address: string | undefined
+    ensName: string | undefined
 
-    connect: (c: Connector) => void,
-    disconnect: () => void,
+    chain: Chain | undefined,
+    connector: Connector | undefined
 
-    tokenAddr: string | undefined,
-
-    walletAddr: string | undefined,
-    chain: string | undefined,
-    connector: Connector | undefined,
-    pendingConnector: Connector | undefined,
-    connectors: Connector[],
+    isConnected: boolean
+    isConnecting: boolean
 }
 
 const defaultCtx = {
-    isConnected: false,
-    isConnecting: false,
+    address: undefined,
+    ensName: undefined,
 
-    connect: () => {},
-    disconnect: () => {},
-
-    tokenAddr: undefined,
-
-    walletAddr: undefined,
     chain: undefined,
     connector: undefined,
-    pendingConnector: undefined,
-    connectors: [],
-}
 
-const connectorLogo = (name: string) => {
-    switch (name.toLowerCase()) {
-        case 'coinbase wallet':
-            return logoCoinbaseWallet
-        case 'metamask':
-            return logoMetaMask
-        case 'walletconnect':
-            return logoWalletConnect
-    }
-
-    return logoDefault
+    isConnected: false,
+    isConnecting: false,
 }
 
 const Context = React.createContext<API>(defaultCtx)
 
 const Provider = (props: React.PropsWithChildren) => {
-    const account = useAccount()
+    const { address, connector, isConnected } = useAccount()
+    const { data: ensName } = useEnsName({ address })
+    const { isLoading: isConnecting } = useConnect()
+    const { chain } = useNetwork()
 
-    const { connect, connectors, isLoading: isConnecting, pendingConnector } = useConnect()
-
-    const { disconnect } = useDisconnect()
-
-    const network = useNetwork()
-
-    const [ctx, setCtx] = useState<API>({
-        ...defaultCtx,
-        connect: (c) => {
-            connect({ connector: c })
-        },
-    })
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, walletAddr: account.address ?? undefined }))
-    }, [account.address])
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, connectors: connectors, pendingConnector: pendingConnector }))
-    }, [connectors, pendingConnector])
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, isConnected: account.isConnected }))
-    }, [account.isConnected])
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, isConnecting: account.isConnecting || account.isReconnecting || isConnecting }))
-    }, [account.isConnecting, account.isReconnecting, isConnecting])
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, disconnect: disconnect }))
-    }, [disconnect])
+    const [ctx, setCtx] = useState<API>(defaultCtx)
 
     useEffect(() => {
         setCtx(ctx => ({
             ...ctx,
-            tokenAddr: network.chain && Token.addr.hasOwnProperty(network.chain.network)
-                ? Token.addr[network.chain.network]
-                : undefined,
-            chain: network.chain && !network.chain.unsupported
-                ? network.chain.name
-                : undefined,
+            address: address ?? undefined,
+            ensName: ensName ?? undefined,
+            chain: chain ?? undefined,
+            connector: connector ?? undefined,
+            isConnected: isConnected,
+            isConnecting: isConnecting,
         }))
-    }, [network.chain])
-
-    useEffect(() => {
-        setCtx(ctx => ({ ...ctx, connector: account.connector }))
-    }, [account.connector])
+    }, [address, ensName, chain, connector, isConnected, isConnecting])
 
     return (
         <Context.Provider value={ctx}>
@@ -122,7 +62,7 @@ const Provider = (props: React.PropsWithChildren) => {
     )
 }
 
-const Consumer = (props: {children: (api:API) => React.ReactNode}) => {
+const Consumer = (props: { children: (api:API) => React.ReactNode }) => {
     return (
         <Context.Consumer>
             {props.children}
@@ -130,88 +70,46 @@ const Consumer = (props: {children: (api:API) => React.ReactNode}) => {
     )
 }
 
-const Connected = (props: React.PropsWithChildren) => {
+const ConnectWidget = () => {
+    const isMounted = useIsMounted()
+    const { connector, isConnected } = useAccount()
+    const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+
     return (
-        <Consumer>
-            {({ isConnected, isConnecting, connect, connectors, pendingConnector }) => (
-                <>
-                    {isConnected ? (
-                        <>{props.children}</>
-                    ) : (
-                        <div className="flex w-full justfify-center items-center min-h-[50vh]">
-                            <div className="flex flex-col space-y-4 mx-auto">
-                                <h2>Connect your wallet to continue</h2>
-                                {connectors
-                                    .filter((c) => c.ready)
-                                    .map((c) => (
-                                        <button
-                                            key={c.id}
-                                            onClick={() => { connect(c) }}
-                                            className="app-btn"
-                                            disabled={isConnecting}
-                                        >
-                                            <img src={connectorLogo(c.name)} className="w-6 h-6 mr-2" alt={c.name} />
-                                            {!isConnecting && 'Connect '}
-                                            {c.name}
-                                            {isConnecting && pendingConnector?.id == c.id && ' is connecting'}
-                                        </button>
-                                    ))
+        <div className="flex flex-col space-y-2">
+            {connectors
+                .filter((x) => isMounted && x.ready && x.id !== connector?.id)
+                .map((x) => (
+                    <div key={x.id} onClick={() => connect({ connector: x })}>
+                        <Button className="w-full">
+                            <ConnectorImage id={x.id} className="w-6 h-6" />
+                            <span className="ml-2">
+                                {isLoading ? (
+                                        <>
+                                            {x.id === pendingConnector?.id ? (
+                                                `${x.name} is connecting ..`
+                                            ) : (
+                                                `${x.name}`
+                                            )}
+                                        </>
+                                    ) : (
+                                        `Connect ${x.name}`
+                                    )
                                 }
-                            </div>
-                        </div>
-                    )}
-                </>
-            )}
-        </Consumer>
+                            </span>
+                        </Button>
+                    </div>
+                ))
+            }
+        </div>
     )
 }
 
-const ConnectedOnSupportedNetwork = (props: React.PropsWithChildren) => {
-    const { chains, switchNetwork } = useSwitchNetwork()
-
-    const isSupported = (chain: string) => {
-        return Token.addr.hasOwnProperty(chain.toLowerCase())
-    }
-
-    return (
-        <Connected>
-            <Consumer>
-                {({ chain }) => (
-                    <>
-                        {chain && isSupported(chain) ? (
-                            <>{props.children}</>
-                        ) : (
-                            <div className="flex w-full justfify-center items-center min-h-[50vh]">
-                                <div className="flex flex-col space-y-4 mx-auto">
-                                    <p className="font-bold">
-                                        Your are connected to {chain} network. Please switch to one where {Token.symbol} Token is deployed.
-                                    </p>
-                                    {switchNetwork && chains
-                                        .filter((c) => Token.addr.hasOwnProperty(c.name.toLowerCase()))
-                                        .map((c) => (
-                                            <button
-                                                key={c.id}
-                                                onClick={() => { switchNetwork(c.id) }}
-                                                className="app-btn"
-                                            >
-                                                {c.name}
-                                            </button>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-                        )}
-                    </>
-                )}
-            </Consumer>
-        </Connected>
-    )
-}
-
-export default {
-    Connected,
-    ConnectedOnSupportedNetwork,
-    Context,
+const Wallet = {
     Consumer,
     Provider,
+
+    ConnectWidget,
 }
+
+export default Wallet
