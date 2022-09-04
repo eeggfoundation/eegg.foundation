@@ -58,6 +58,7 @@ const MobileNavLink = (props: React.PropsWithChildren<{ href: string}>) => {
 
 export function Header() {
     const navLeft = [
+        ['Features', '/#features'],
         ['Architecture', '/#architecture'],
         ['Token', '/#token'],
         ['Products', '/#products'],

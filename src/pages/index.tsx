@@ -6,6 +6,9 @@ import Head from 'next/head'
 
 import { Header } from '@/components/ui/Header'
 import { Hero } from '@/components/index/Hero'
+import { Features } from '@/components/index/Features'
+import { Architecture } from '@/components/index/Architecture'
+import { Token } from '@/components/index/Token'
 
 export default function Index() {
     //const isMounted = useIsMounted()
@@ -19,6 +22,9 @@ export default function Index() {
             <Header />
             <main>
                 <Hero />
+                <Features />
+                <Architecture />
+                <Token />
             </main>
         </>
     )
