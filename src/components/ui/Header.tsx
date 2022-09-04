@@ -8,22 +8,34 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { Mark } from '@/components/ui/Logo'
 
+const navLeft = [
+    { label: 'Features', href: '/#features', idx: 0},
+    { label: 'Architecture', href: '/#architecture', idx: 1},
+    { label: 'Token', href: '/#token', idx: 2},
+    { label: 'Products', href: '/#products', idx: 3},
+]
+
+const navRight = [
+    { label: '<Operator/>', href: '/operator', idx: 4},
+]
+
+
 const NavLinks = ({ links }) => {
     let [hoveredIndex, setHoveredIndex] = useState(null)
 
     return (
         <>
-            {links.map(([label, href], index) => (
+            {links.map(({label, href, idx}) => (
                 <Link
                     key={label}
                     href={href}
                     className="font-bold relative -my-2 -mx-3 px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 hover:delay-[0ms]"
-                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseEnter={() => setHoveredIndex(idx)}
                     onMouseLeave={() => setHoveredIndex(null)}
                 >
                     <>
                         <AnimatePresence>
-                            {hoveredIndex === index && (
+                            {hoveredIndex === idx && (
                                 <motion.span
                                     className="absolute inset-0 bg-white border-black border-2"
                                     layoutId="hoverBackground"
@@ -57,18 +69,6 @@ const MobileNavLink = (props: React.PropsWithChildren<{ href: string}>) => {
 }
 
 export function Header() {
-    const navLeft = [
-        ['Features', '/#features'],
-        ['Architecture', '/#architecture'],
-        ['Token', '/#token'],
-        ['Products', '/#products'],
-        ['FAQs', '/#faqs'],
-    ]
-
-    const navRight = [
-        ['<Operator/>', '/operator'],
-    ]
-
     return (
         <header>
             <nav>
@@ -121,7 +121,7 @@ export function Header() {
                                                     className="absolute inset-x-0 top-0 z-0 origin-top bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
                                                 >
                                                     <div className="space-y-4">
-                                                        {navLeft.concat(navRight).map(([label, href]) => (
+                                                        {navLeft.concat(navRight).map(({label, href}) => (
                                                             <MobileNavLink key={label} href={href}>
                                                                 {label}
                                                             </MobileNavLink>
