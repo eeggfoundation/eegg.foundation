@@ -94,7 +94,7 @@ export function Hero() {
                             The <span className="font-bold text-black">EEGG</span> (Electronic Egg) is a&nbsp;redefined art object. It consists
                             of two indivisible parts. One is a&nbsp;real work of Art, <span className="font-bold text-black">ROR</span> (Real Object
                             of Reality), and the other is its unique digital version <span className="font-bold text-black">NFT</span> (Non-Fungible
-                            Token). Both versions of the work are tradable only at the same time.
+                            Token). Both versions of the work are tradable together only.
                         </p>
                     </div>
                     <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0">
