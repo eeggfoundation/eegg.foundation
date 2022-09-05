@@ -83,13 +83,18 @@ export function Hero() {
             <Container>
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
                     <div className="relative z-10 mx-auto max-w-2xl lg:col-span-7 lg:max-w-none lg:pt-6">
-                        <h1 className="text-4xl text-black lg:leading-normal">
-                            <span className="font-bold">Eegg Foundation</span> facilitates the creation
-                            of a&nbsp;revolutionary new asset class on the Ethereum blockchain. Our mission
-                            is to bridge the <span className="font-bold">world of art and technology</span> by
-                            creating a new form of <span className="font-bold">distributed ownership</span> for
-                            galleries and artists.
+                        <h1 className="text-2xl md:text-4xl text-black lg:leading-normal">
+                            <span className="font-bold">The ownership of Art redefined.</span><br/>
+                            <span className="font-bold">EEGG Foundation</span> enables the creation of a&nbsp;revolutionary
+                            new asset class on the Ethereum blockchain. Our mission is to bridge the worlds of analogue Art
+                            and digital technology by creating a&nbsp;new form of ownership distributed to artists, galleries,
+                            and collectors.
                         </h1>
+                        <p className="mt-6 text-xl text-gray-600">
+                            The EEGG (Electronic Egg) is a&nbsp;redefined art object. It consists of two indivisible parts.
+                            One is a&nbsp;real work of Art, ROR (Real Object of Reality), and the other is its unique digital
+                            version NFT (Non-Fungible Token). Both versions of the work are tradable only at the same time.
+                        </p>
                     </div>
                     <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0">
                         <BackgroundIllustration className="absolute left-1/2 top-4 h-[1026px] w-[1026px] -translate-x-1/3 stroke-gray-300/70 [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:top-16 sm:-translate-x-1/2 lg:-top-16 lg:ml-12 xl:-top-14 xl:ml-0" />
