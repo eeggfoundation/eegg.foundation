@@ -1,19 +1,19 @@
 const features = [
     {
-        name: 'Competitive rates',
-        description: 'Consequuntur omnis dicta cumque, inventore atque ab dolores aspernatur tempora ab doloremque.',
+        name: 'Undisputed ownership',
+        description: 'Every transaction happens in the blockchain, transparent and immutable. Together with the legal framework, the technology guarantees ownership.',
     },
     {
-        name: 'No hidden fees',
-        description: 'Corporis quisquam nostrum nulla veniam recusandae temporibus aperiam officia incidunt at distinctio ratione.',
+        name: 'Commission',
+        description: 'The EEGG technology secures commission to the authors (and their successors) from any future transaction of their original Art. Unlike now, the EEGG guardianship results in the assurance of commissions.',
     },
     {
-        name: 'Instant transfers',
-        description: 'Omnis, illo delectus? Libero, possimus nulla nemo tenetur adipisci repellat dolore eligendi velit doloribus mollitia.',
+        name: 'Physical/Online',
+        description: 'The unique join of ROR and NFT brings the possibility to exhibit the Art physically and online.',
     },
     {
-        name: 'Reminder emails',
-        description: 'Veniam necessitatibus reiciendis fugit explicabo dolorem nihil et omnis assumenda odit? Quisquam unde accusantium.',
+        name: 'On-chain/Off-chain',
+        description: 'The EEGG technology brings a system of decentralized on-chain / off-chain oracle providers, which makes the state or place of the ROR unquestionable.',
     },
 ]
 
