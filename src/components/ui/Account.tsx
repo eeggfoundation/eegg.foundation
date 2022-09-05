@@ -1,7 +1,10 @@
 import { useBalance } from 'wagmi'
 import { WalletIcon } from '@heroicons/react/24/outline'
 
-import { ConnectorImage } from '@/components/ui/ConnectorImage'
+import {
+    Card,
+    ConnectorImage,
+} from '@/components/ui'
 import { token } from '@/content'
 import Wallet from '@/providers/Wallet'
 
@@ -16,7 +19,8 @@ export function Account(props: { address: string }) {
             {({ address, ensName, chain, connector, isConnected }) => (
                 <>
                     {isConnected && connector && (
-                        <div className="relative flex items-center space-x-3 border border-gray-300 bg-white p-2 shadow-sm overflow-hidden">
+                        <Card>
+                        <div className="relative flex items-center space-x-3 overflow-hidden">
                             <div className="flex-shrink-0 border-r-2 border-gray-300">
                                 <WalletIcon className="w-10 h-10 py-2" />
                             </div>
@@ -54,6 +58,7 @@ export function Account(props: { address: string }) {
                                 </table>
                             </div>
                         </div>
+                        </Card>
                     )}
                 </>
             )}
