@@ -5,3 +5,12 @@
 #__next {
     min-height: 100%;
 }
+
+.app-input {
+    @apply inline-flex py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.2)-1px)] border-b-4 outline-none transition-colors font-bold;
+    @apply bg-stone-100 text-black border-black;
+}
+
+.app-input:disabled {
+    @apply bg-gray-300 text-gray-600 border-gray-400;
+}

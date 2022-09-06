@@ -11,6 +11,7 @@ import {
     ExclamationTriangleIcon,
     NoSymbolIcon,
 } from '@heroicons/react/24/outline'
+import { toast } from 'react-toastify'
 
 import { token } from '@/content'
 import {
@@ -50,7 +51,6 @@ const TokenInfoCard = () => {
         error: pausedError,
         isLoading: isPausedLoading,
         isError: isPausedError,
-        refetch: pausedRefetch,
     } = useContractRead({
         addressOrName: token.addr,
         contractInterface: token.abi,
@@ -97,10 +97,8 @@ const RolesOfResult = (props: {
             { ...query, args: [utils.id(token.roles.pauser.value), props.addr] },
             { ...query, args: [utils.id(token.roles.upgrader.value), props.addr] },
         ],
-        onSuccess(data) {
-            console.log(data)
-        },
         onError(err) {
+            toast.error(err.message)
             console.error(err)
         },
         onSettled() {
@@ -144,12 +142,17 @@ const RolesOfResult = (props: {
 }
 
 const RolesOfCard = () => {
-    const [ addr, setAddr ] = useState('0x00')
+    const [ addr, setAddr ] = useState()
     const [ isBusy, setIsBusy ] = useState(false)
 
     const { handleSubmit, register } = useForm()
 
     const onSubmit = (data: any) => {
+        console.log(data.addr, addr)
+        if (data.addr == addr) {
+            return
+        }
+        console.log(data)
         setAddr(data.addr)
         setIsBusy(true)
     }
@@ -162,24 +165,20 @@ const RolesOfCard = () => {
             </p>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-1 mt-4">
                 <div className="flex flex-col">
-                    <label>Address or ENS:</label>
-                    <input {...register('addr', {required:true})} placeholder="0x.." className="" />
+                    <input {...register('addr', {required:true})} placeholder="0x.." className="app-input" />
+
+
                 </div>
                 <div>
-                    <button type="submit">
+                    <Button type="submit" disabled={isBusy}>
                         Resolve
-                    </button>
-                    {
-                        //<Button disabled={isLoading} onClick={() => {}}>
-                            //Resolve
-                        //</Button>
-                    }
+                    </Button>
                 </div>
-                <div>
-                    {addr && (
+                {addr && addr !== '' && (
+                    <div className="pt-4 pb-2 px-2 bg-stone-100">
                         <RolesOfResult addr={addr} onFinish={() => { setIsBusy(false) }} />
-                    )}
-                </div>
+                    </div>
+                )}
             </form>
         </Card>
     )

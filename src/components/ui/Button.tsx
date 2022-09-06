@@ -6,10 +6,11 @@ interface IButtonProps extends React.PropsWithChildren {
     className?: string,
     disabled?: boolean,
     href?: string,
+    type?: 'button' | 'submit' | 'reset',
     variant?: 'dark' | 'light',
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(function Button(props, ref) {
+export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(function Button(props, ref, ...rest) {
     const className = clsx(
         'inline-flex py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.4)-1px)] border-4 outline-none transition-colors font-bold ease-in-out duration-300',
         props.className,
@@ -27,11 +28,11 @@ export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(function
     ) : (
         <>
             {props.href ? (
-                <Link href={props.href} className={className}>
+                <Link href={props.href} className={className} {...rest}>
                     {props.children}
                 </Link>
             ) : (
-                <button ref={ref} className={className}>
+                <button type={props.type} ref={ref} className={className} {...rest}>
                     {props.children}
                 </button>
             )}
