@@ -4,7 +4,11 @@ import {
     Container,
     GitHubIcon,
 } from '@/components/ui'
-import { governor, token } from '@/content'
+import {
+    governor,
+    token,
+    wallet,
+} from '@/content'
 
 const navigation = {
     pages: [
@@ -46,6 +50,14 @@ export function Footer() {
                                     <ArrowTopRightOnSquareIcon className="w-3 h-3" />
                                 </a>
                             </div>
+                            <div className="inline-flex items-baseline space-x-2">
+                                <span>EEGG Foundation Wallet:</span>
+                                <a href={`https://etherscan.io/address/${wallet.addr}`} target="_blank" rel="noopener noreferrer" className="font-mono underline hover:text-gray-900 inline-flex items-baseline space-x-1">
+                                    <span>{wallet.addr}</span>
+                                    <ArrowTopRightOnSquareIcon className="w-3 h-3" />
+                                </a>
+                            </div>
+
 
                             <div className="inline-flex items-baseline space-x-2 justify-center">
                                 <a href="https://github.com/eeggfoundation" target="_blank" rel="noopener noreferrer">
@@ -54,20 +66,8 @@ export function Footer() {
                             </div>
                         </div>
                     </div>
-                    {
-                        /*
-                        <div className="mt-8 flex justify-center space-x-6">
-                            {navigation.social.map((item) => (
-                                <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                                    <span className="sr-only">{item.name}</span>
-                                    <item.icon className="h-6 w-6" aria-hidden="true" />
-                                </a>
-                            ))}
-                        </div>
-                        */
-                    }
                     <p className="mt-8 text-center text-gray-400">
-                        &copy; Copyright {new Date().getFullYear()}. All rights reserved.
+                        &copy; Copyright {new Date().getFullYear()} I, FOUNDATION, s.r.o. All rights reserved.
                     </p>
                 </div>
             </Container>
