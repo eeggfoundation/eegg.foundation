@@ -3,6 +3,7 @@ import Head from 'next/head'
 import {
     useContractRead,
     useContractReads,
+    useDisconnect,
 } from 'wagmi'
 import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
@@ -187,6 +188,12 @@ const RolesOfCard = () => {
 export default function Operator() {
     const isMounted = useIsMounted()
 
+    const { disconnect } = useDisconnect()
+
+    const onDisconnect = () => {
+        disconnect()
+    }
+
     return (
         <>
             <Head>
@@ -197,16 +204,29 @@ export default function Operator() {
                 <Container>
                     {isMounted && (
                         <Wallet.Consumer>
-                            {({ address }) => (
-                                <div className="flex flex-col max-w-4xl space-y-8 mx-auto">
-                                    <TokenInfoCard />
-                                    <NoteCard />
-                                    <div>
-                                        <CardLabel>Your connected Wallet</CardLabel>
-                                        <Account address={address} />
-                                    </div>
-                                    <RolesOfCard />
-                                </div>
+                            {({ address, isConnected }) => (
+                                <>
+                                    {isConnected ? (
+                                        <div className="flex flex-col max-w-4xl space-y-8 mx-auto">
+                                            <TokenInfoCard />
+                                            <NoteCard />
+                                            <div>
+                                                <CardLabel>Your connected Wallet</CardLabel>
+                                                <Account address={address} />
+                                                <div onClick={onDisconnect} className="my-2 ml-4">
+                                                    <Button>
+                                                        Disconnect Wallet
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                            <RolesOfCard />
+                                        </div>
+                                    ) : (
+                                        <div className="max-w-2xl mx-auto">
+                                            <Wallet.ConnectWidget />
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </Wallet.Consumer>
                     )}
