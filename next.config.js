@@ -1,10 +1,10 @@
-// @ts-check
-
-/**
- * @type {import('next').NextConfig}
- **/
- const nextConfig = {
-    /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    reactStrictMode: true,
+    experimental: {
+        newNextLinkBehavior: true,
+        scrollRestoration: true,
+    },
 }
 
 module.exports = nextConfig
