@@ -16,7 +16,7 @@ const navLeft = [
 ]
 
 const navRight = [
-    { label: '<Operator/>', href: '/operator', idx: 4},
+    //{ label: '<Operator/>', href: '/operator', idx: 4},
 ]
 
 
