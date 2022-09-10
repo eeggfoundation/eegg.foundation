@@ -54,18 +54,6 @@ export function Footer() {
                             </div>
                         </div>
                     </div>
-                    {
-                        /*
-                        <div className="mt-8 flex justify-center space-x-6">
-                            {navigation.social.map((item) => (
-                                <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                                    <span className="sr-only">{item.name}</span>
-                                    <item.icon className="h-6 w-6" aria-hidden="true" />
-                                </a>
-                            ))}
-                        </div>
-                        */
-                    }
                     <p className="mt-8 text-center text-gray-400">
                         &copy; Copyright {new Date().getFullYear()}. All rights reserved.
                     </p>

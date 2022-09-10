@@ -31,7 +31,12 @@ export function Token() {
                     <div className="mx-auto max-w-3xl sm:text-center">
                         <p className="text-lg text-gray-300">
                             EEGG Token is the central driver of the EEGG Foundation.
-                            Svým vlastníkům token zajistí podíl z transakčních poplatků, které EEGG Foundation získá z poskytování technologie na prodej EEGG objektů. Vedle zhodnocení, zajisťuje vlastnictví EEGG tokenů svému majiteli možnost &quot;governance&quot projektu EEGG Foundation. Například právo se svým hlasem ovlivnit vývoj a finální podobu EEGG Smart Contracts, které určují parametry prodeje EEGG děl.
+                        </p>
+                        <p className="text-lg text-gray-300 mt-3">
+                            The token will provide its owners with a share of the transaction fees that the EEGG Foundation will receive from providing
+                            the technology for the sale of EEGG objects. In addition to appreciation, the ownership of EEGG tokens provides its owner
+                            with the possibility of &quot;governance&quot; of the EEGG Foundation project. For example, the right to influence the
+                            development and final form of EEGG Smart Contracts, which determine the parameters of the sale of EEGG works, with your vote.
                         </p>
                     </div>
                     <div className="mx-auto max-w-2xl sm:text-center">

@@ -1,12 +1,12 @@
 const products = [
     {
         name: 'Smart Contracts',
-        description: 'Produkt EEGG Smart Contracts představuje sadu digitálně naprogramovaných postupů a smluv, které autonomně zajišťují prodej EEGG děl, chod mechanismu EEGG Foundation a EEGG Gallery. EEGG Smart Contracts jsou uloženy a zveřejněny vna blockchainu k volnému open source užití.',
+        description: 'The EEGG Smart Contracts is a set of digitally programmed procedures and contracts that autonomously ensure the sale of EEGG works and the operation of the EEGG Foundation mechanism. EEGG Smart Contracts are stored and published on the blockchain for free use.',
         variant: 'dark',
     },
     {
         name: 'Headless Gallery',
-        description: 'Druhým produktem EEGG Foundation je EEGG headless gallery. Galerie technologicky napojená na Smart Contracts, na jejíž bázi může kdokoli provozovat vlastní galerii na prodej EEGG objektů. Galerii je možné skinovat a implementovat na webové rozhraní třetích stran, např. na stánky galerií, které obchodují s NTF obrazy. EEGG Foundation bude pPrvním provozovatelem této technologie je EEGG gallery.',
+        description: 'The second product of the EEGG Foundation is the EEGG headless gallery. A gallery technologically connected to Smart Contracts, based on which anyone can run their own gallery for the sale of EEGG objects. The gallery can be skinned and implemented on third-party web interfaces, e.g. on gallery stands that trade in NTF images.',
         variant: 'light',
     },
 ]

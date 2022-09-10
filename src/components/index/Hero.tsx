@@ -1,6 +1,7 @@
 import React from 'react'
 import { useId } from 'react'
 import Image from 'next/future/image'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { Container } from '@/components/ui/Container'
 import imgMonaLisaTriangluar from '@/images/mltriangle.png'
@@ -94,6 +95,12 @@ export function Hero() {
                             of two indivisible parts. One is a&nbsp;real work of Art, <span className="font-bold text-black">ROR</span> (Real Object
                             of Reality), and the other is its unique digital version <span className="font-bold text-black">NFT</span> (Non-Fungible
                             Token). Both versions of the work are tradable together only.
+                        </p>
+                        <p className="mt-3 text-xl text-black lg:leading-normal">
+                            <a href="/eegg-white-paper-2022-08-22.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-baseline space-x-1 underline">
+                                <span>White Paper</span>
+                                <ArrowTopRightOnSquareIcon className="w-3 h-3" />
+                            </a>
                         </p>
                     </div>
                     <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0">

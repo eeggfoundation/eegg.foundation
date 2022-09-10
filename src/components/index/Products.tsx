@@ -45,7 +45,8 @@ export function Products() {
                         Products
                     </h2>
                     <p className="mt-2 text-lg text-gray-600">
-                        EEGG Foundation zastřešuje dva separátní produkty, které fungují na bázi sítě Ethereum. Oba produkty spolu úzce souvisí a jeden z druhého vychází. A oba jsou veřejnosti nabízené zdarma jako open source.
+                        The EEGG Foundation covers two different products running on the Ethereum blockchain. Both products are closely related,
+                        and one is based on the other. And both are offered free to the public as open source.
                     </p>
                 </div>
 
