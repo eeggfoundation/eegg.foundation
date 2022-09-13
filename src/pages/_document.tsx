@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+import { GTM_ID } from '@/lib/gtm'
 
 const Document = () => {
     return (
@@ -19,6 +20,14 @@ const Document = () => {
                 <link href="https://fonts.bunny.net/css?family=ibm-plex-sans:400,600" rel="stylesheet" />
             </Head>
             <body className="font-sans flex h-full flex-col bg-stone-100">
+                <noscript>
+                    <iframe
+                        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                        height="0"
+                        width="0"
+                        style={{ display: 'none', visibility: 'hidden' }}
+                    />
+                </noscript>
                 <Main />
                 <NextScript />
             </body>
