@@ -4,7 +4,7 @@ import {
     Container,
     GitHubIcon,
 } from '@/components/ui'
-import { governor, token } from '@/content'
+import { governor, token } from '@/lib'
 
 const navigation = {
     pages: [

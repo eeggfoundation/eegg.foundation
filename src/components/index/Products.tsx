@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 import { Container } from '@/components/ui/Container'
-import { products } from '@/content'
+import { products } from '@/lib'
 
 const Product = (props: {
     name: string,

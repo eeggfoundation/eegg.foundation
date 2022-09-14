@@ -18,7 +18,7 @@ import {
 } from '@/components/ui'
 import Wallet from '@/providers/Wallet'
 
-import { token } from '@/content'
+import { token } from '@/lib'
 
 export default function RegisterToWallet() {
     const [isRegistering, setIsRegistering] = useState(false)
