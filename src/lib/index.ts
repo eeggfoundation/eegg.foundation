@@ -4,6 +4,7 @@ import { GTM_ID, pageview } from './gtm'
 import products from './products'
 import token from './token'
 import tokenomics from './tokenomics'
+import wallet from './wallet'
 
 export {
     features,
@@ -12,4 +13,5 @@ export {
     products,
     token,
     tokenomics,
+    wallet,
 }
