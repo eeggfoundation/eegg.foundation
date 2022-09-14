@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container'
-import { features } from '@/content'
+import { features } from '@/lib'
 
 export function Features() {
     return (

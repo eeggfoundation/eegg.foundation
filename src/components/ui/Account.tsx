@@ -2,7 +2,7 @@ import { useBalance } from 'wagmi'
 import { WalletIcon } from '@heroicons/react/24/outline'
 
 import { ConnectorImage } from '@/components/ui/ConnectorImage'
-import { token } from '@/content'
+import { token } from '@/lib'
 import Wallet from '@/providers/Wallet'
 
 export function Account(props: { address: string }) {

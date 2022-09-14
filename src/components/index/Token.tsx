@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { CircleBackground } from '@/components/ui/CircleBackground'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
-import { tokenomics } from '@/content'
+import { tokenomics } from '@/lib'
 
 export function Token() {
     return (
