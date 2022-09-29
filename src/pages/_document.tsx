@@ -18,6 +18,19 @@ const Document = () => {
                 <meta name="theme-color" content="#ffffff" />
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link href="https://fonts.bunny.net/css?family=ibm-plex-sans:400,600" rel="stylesheet" />
+
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://eegg.foundation" />
+                <meta property="og:title" content="EEGG foundation" />
+                <meta property="og:image" content="https://eegg.foundation/social/1200x630.v1.png" />
+                <meta property="og:image:type" content="image/png" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="https://eegg.foundation" />
+                <meta property="twitter:title" content="EEGG foundation" />
+                <meta property="twitter:image" content="https://eegg.foundation/social/400x400.v1.png" />
             </Head>
             <body className="font-sans flex h-full flex-col bg-stone-100">
                 <noscript>
