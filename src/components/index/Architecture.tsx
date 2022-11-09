@@ -1,4 +1,4 @@
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 import { Container } from '@/components/ui/Container'
 import imgArchitecture from '@/images/architecture.png'
