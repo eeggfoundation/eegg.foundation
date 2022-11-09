@@ -1,6 +1,6 @@
 import React from 'react'
 import { useId } from 'react'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { Container } from '@/components/ui/Container'

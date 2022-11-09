@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 import logoDefault from '@/images/1x1-00000000.png'
 import logoCoinbaseWallet from '@/images/wallets/cbw.png'
