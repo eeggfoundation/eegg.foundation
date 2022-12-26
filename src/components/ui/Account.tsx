@@ -5,9 +5,9 @@ import { ConnectorImage } from '@/components/ui/ConnectorImage'
 import { token } from '@/lib'
 import Wallet from '@/providers/Wallet'
 
-export function Account(props: { address: string }) {
+export function Account(props: { address: `0x${string}` }) {
     const { data: balance, error: balanceError } = useBalance({
-        addressOrName: props.address,
+        address: props.address,
         token: token.addr,
     })
 
