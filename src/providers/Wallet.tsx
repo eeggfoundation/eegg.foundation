@@ -12,7 +12,7 @@ import { Button, ConnectorImage } from '@/components/ui'
 import { useIsMounted } from '@/hooks'
 
 interface API {
-    address: string | undefined
+    address: `0x${string}` | undefined
     ensName: string | undefined
 
     chain: Chain | undefined,

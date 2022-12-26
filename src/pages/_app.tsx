@@ -9,7 +9,7 @@ import {
     WagmiConfig,
     configureChains,
     createClient,
-    defaultChains,
+    mainnet,
 } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
@@ -32,7 +32,7 @@ if (process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
     }))
 }
 
-const { chains, provider, webSocketProvider } = configureChains(defaultChains, providers)
+const { chains, provider, webSocketProvider } = configureChains([mainnet], providers)
 
 const client = createClient({
     autoConnect: true,
