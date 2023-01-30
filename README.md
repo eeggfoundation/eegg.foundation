@@ -14,7 +14,7 @@ Configuration keys and their explanation follow:
 
 ### Alchemy
 
-If you want to use [Alchemy](https://www.alchemy.com/) as your web3 provider, assign your API key:
+Assign your [Alchemy](https://www.alchemy.com/) API key:
 
 ```sh
 NEXT_PUBLIC_ALCHEMY_API_KEY=<your API key>

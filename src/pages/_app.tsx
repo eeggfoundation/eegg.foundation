@@ -22,17 +22,12 @@ import Wallet from '@/providers/Wallet'
 
 import { ToastContainer, Slide } from 'react-toastify'
 
-let providers = [
-    publicProvider(),
-]
-
-if (process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
-    providers.unshift(alchemyProvider({
-        apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-    }))
-}
-
-const { chains, provider, webSocketProvider } = configureChains([mainnet], providers)
+const { chains, provider, webSocketProvider } = configureChains(
+    [mainnet],
+    [
+        alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY }),
+        publicProvider(),
+    ])
 
 const client = createClient({
     autoConnect: true,
