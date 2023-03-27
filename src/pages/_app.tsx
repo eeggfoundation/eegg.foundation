@@ -36,13 +36,13 @@ const client = createClient({
         new CoinbaseWalletConnector({
             chains,
             options: {
-                appName: 'ergg.foundation',
+                appName: 'eegg.foundation',
             },
         }),
         new WalletConnectConnector({
             chains,
             options: {
-                qrcode: true,
+                projectId: 'eegg.foundation',
             },
         }),
     ],
