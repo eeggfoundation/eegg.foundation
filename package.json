@@ -22,7 +22,7 @@
         "framer-motion": "^10.0.2",
         "postcss-focus-visible": "^8.0.2",
         "typescript": "^5.0",
-        "wagmi": "^0.12.6"
+        "wagmi": "^0.12.8"
     },
     "browserslist": {
         "production": [
