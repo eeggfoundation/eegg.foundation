@@ -19,7 +19,7 @@
         "clsx": "^1.2.1",
         "ethers": "^5.7.2",
         "focus-visible": "^5.2.0",
-        "framer-motion": "^10.12.2",
+        "framer-motion": "^10.12.8",
         "postcss-focus-visible": "^8.0.2",
         "typescript": "^5.0",
         "wagmi": "^0.12.8"
