@@ -90,6 +90,8 @@ export function Footer() {
                         </div>
                     </div>
                     <p className="mt-8 text-center text-gray-400">
+                        EEGG is being developed in cooperation with <a href="https://www.iniiway.studio" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-900">The Inii Way venture studio</a>.
+                        <br/>
                         &copy; Copyright {new Date().getFullYear()} <a href="http://ifoundation.cz" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-900">I, Foundation</a>. All rights reserved.
                         <br/>
                         <a href="mailto:eegg.foundation@gmail.com" className="underline hover:text-gray-900">eegg.foundation @ gmail.com</a>
